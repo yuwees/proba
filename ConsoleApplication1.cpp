@@ -2,7 +2,8 @@
 using namespace std;
 
 int main()
-{
+{ //использую double и float, потому что по условию необходимы действительные числа
+  
 	setlocale(LC_ALL, "Russian");
 
 	double a;
@@ -13,13 +14,13 @@ int main()
 	cin >> a;
 	
 
-	cout << "Введите правую границу интервала: ";
+	cout << "Введите правую границу интервала: " << endl;
 	cin >> b;
 	
-	double mid;
-	mid = (a + b) / 2.0;
+	double mid; 
+	mid = (a + b) / 2.0;//делю на 2.0, чтобы значвение не округлялось
 	cout << "Середина интервала: " << mid << endl;
-	cout << "Тип данных: double " << endl;
+
 
 	cout << "Тип данных: double " << endl;
 	cout << "Размер в битах: " << sizeof(double) * 8 << endl;
