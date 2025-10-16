@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 
 
-int main() 
+int main()
 {
     // Пункт 1
 
@@ -21,7 +21,7 @@ int main()
         std::cin >> num;
 
         if (num <= 10.12) {
-            sum += num; 
+            sum += num;
             found = true; // Устанавливаем флаг, что нашлось хотя бы одно число
 
             // Проверка является ли текущее число наименьшим
@@ -44,30 +44,40 @@ int main()
 
     // Пункт 2
     int x;
+    bool flag = false;
+    int last_3 = 0;
+    int position = 0;
+
     std::cout << "Введите целое число X менее 1000: " << std::endl;
     std::cin >> x;
+    x = abs(x);
+    if (x < 1000) {
+        while (x > 0) {
+            int ost = x % 10;
+            if (ost == 3) {
+                flag = true;
+                last_3 = position;
+                break;
+            }
+            x /= 10;
+            position++;
+            
 
-    int position = -1;  // Позиция последней цифры '3'
-    int copy = x;      // Копия исходного числа для обработки
-    int tekyshaa_position = 1; // Текущая позиция цифры 
-
-    while (copy > 0) {
-        int ost = copy % 10; // Остаток от деления это текущая цифра
-        if (ost == 3) {
-            position = tekyshaa_position; // Сохраняем последнюю 3
         }
-        copy /= 10; // Отбрасываем последнюю цифру
-        tekyshaa_position++; // Увеличиваем счётчик позиций
-    }
+        if (flag == true) {
+            std::cout << "Индекс последней цифры '3': " << last_3  << std::endl;
+            
+        }
+        else {
+            std::cout << "Цифра '3' отсутствует в числе." << std::endl;
+        }
 
-    // Выводим результат
-    if (position != -1) {
-        std::cout << "Индекс последней цифры '3': " << position << std::endl;
-    }
-    else {
-        std::cout << "Цифра '3' отсутствует" << std::endl;
     }
 
     return 0;
- 
+
+
+    
+
+
 }
