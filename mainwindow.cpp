@@ -1,7 +1,5 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include <QResource>
-#include <QPixmap>
 #include <QRegExp>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -9,9 +7,6 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowTitle("Птица"); // Устанавливаем заголовок окна
     centralWidget = new QWidget(this);
     setCentralWidget(centralWidget);
-    
-    // Загружаем ресурсы
-    Q_INIT_RESOURCE(resources);
     
     setupUI();
 }
@@ -34,9 +29,13 @@ void MainWindow::setupUI() {
     checkboxWaterproof = new QCheckBox("Водоплавающие", centralWidget);
     checkboxDomestic = new QCheckBox("Домашние", centralWidget);
     
-    // Кнопки без иконок (как на изображении)
+    // Кнопки без иконок
     buttonReset = new QPushButton("Сброс", centralWidget);
     buttonSave = new QPushButton("Сохранить", centralWidget);
+    
+    // Стили кнопок
+    buttonReset->setStyleSheet("background-color: red;");
+    buttonSave->setStyleSheet("background-color: green;");
     
     // Регулярные выражения для валидаторов
     QRegExp rxRus("[A-ZА-ЯЁ][a-zа-яё]+"); // Первая заглавная русская буква
@@ -47,11 +46,7 @@ void MainWindow::setupUI() {
     editRName->setValidator(new QRegExpValidator(rxRus));
     editLName->setValidator(new QRegExpValidator(rxEng));
     editWeight->setValidator(new QRegExpValidator(rxFloat));
-    editWingspan->setValidator(new QRegExpValidator(rxRxange));
-    
-    // Назначаем уникальные имена объектам для стилей
-    editWeight->setObjectName("lineEditWeight"); // Поле "Вес"
-    editLName->setObjectName("lineEditLatinName"); // Поле "Название (Л)"
+    editWingspan->setValidator(new QRegExpValidator(rxRange));
     
     // Макеты
     QVBoxLayout *mainLayout = new QVBoxLayout(centralWidget);
@@ -85,78 +80,4 @@ void MainWindow::setupUI() {
     mainLayout->addStretch();
     
     QHBoxLayout *buttonsLayout = new QHBoxLayout();
-    buttonsLayout->addWidget(buttonReset);
-    buttonsLayout->addWidget(buttonSave);
-    mainLayout->addLayout(buttonsLayout);
-    
-    centralWidget->setLayout(mainLayout);
-}
-
-void MainWindow::onResetClicked() {
-    // Улучшенная реализация сброса
-    editRName->clear();          // Русское название
-    editLName->clear();          // Латинское название
-    editWeight->clear();         // Вес
-    editWingspan->clear();       // Размах крыльев
-
-    // Чекбоксы
-    checkboxMigrating->setChecked(false);  // Перелетные
-    checkboxWaterproof->setChecked(false); // Водоплавающие
-    checkboxDomestic->setChecked(false);   // Домашние
-
-    // Радиокнопки
-    radioCanFlyYes->setAutoExclusive(false); // Временное отключение исключительности
-    radioCanFlyNo->setAutoExclusive(false);
-    radioCanFlyYes->setChecked(false);      // Снять выделение
-    radioCanFlyNo->setChecked(false);
-    radioCanFlyYes->setAutoExclusive(true); // Включить обратно
-    radioCanFlyNo->setAutoExclusive(true);
-
-    // Установка фокуса на первое поле
-    editRName->setFocus();
-}
-
-bool MainWindow::validateFields() {
-    if (editRName->text().isEmpty()) {
-        QMessageBox::warning(this, "Ошибка", "Заполните русское название!");
-        return false;
-    }
-    
-    if (editWeight->text().isEmpty()) {
-        QMessageBox::warning(this, "Ошибка", "Заполните вес!");
-        return false;
-    }
-    
-    if (editWingspan->text().isEmpty()) {
-        QMessageBox::warning(this, "Ошибка", "Заполните размах крыльев!");
-        return false;
-    }
-    
-    if (!(radioCanFlyYes->isChecked() || radioCanFlyNo->isChecked())) {
-        QMessageBox::warning(this, "Ошибка", "Выберите возможность полета!");
-        return false;
-    }
-    
-    return true;
-}
-
-void MainWindow::onSaveClicked() {
-    if (!validateFields())
-        return;
-        
-    QString features;
-    if (checkboxMigrating->isChecked()) features += "Перелетные ";
-    if (checkboxWaterproof->isChecked()) features += "Водоплавающие ";
-    if (checkboxDomestic->isChecked()) features += "Домашние ";
-    
-    Bird bird(editRName->text(),
-              editLName->text(),
-              editWeight->text().toFloat(),
-              editWingspan->text(),
-              radioCanFlyYes->isChecked(),
-              features.trimmed());
-              
-    bird.saveToFile();
-    
-    QMessageBox::information(this, "Успех", "Данные сохранены успешно!");
-}
+   
