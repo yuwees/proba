@@ -1,13 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <!-- Большие иконки -->
-        <file>icons/big_reset_icon.png</file>
-        <file>icons/big_save_icon.png</file>
-        
-        <!-- Маленькие иконки -->
-        <file>icons/small_reset_icon.png</file>
-        <file>icons/small_save_icon.png</file>
-        
         <!-- Стили -->
         <file>styles.qss</file>
     </qresource>
