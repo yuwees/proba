@@ -34,19 +34,9 @@ void MainWindow::setupUI() {
     checkboxWaterproof = new QCheckBox("Водоплавающие", centralWidget);
     checkboxDomestic = new QCheckBox("Домашние", centralWidget);
     
-    // Кнопка "Сброс" с большой иконкой
-    buttonReset = new QPushButton("", centralWidget); // Без текста
-    buttonReset->setIconSize(QSize(48, 48)); // Большой размер иконки
-    buttonReset->setIcon(QIcon(":/big_reset_icon.png")); // Большая иконка
-    buttonReset->setToolTip("Сброс"); // Подсказка
-    connect(buttonReset, &QPushButton::clicked, this, &MainWindow::onResetClicked);
-    
-    // Кнопка "Сохранить" с маленькой иконкой
-    buttonSave = new QPushButton("", centralWidget); // Без текста
-    buttonSave->setIconSize(QSize(32, 32)); // Малый размер иконки
-    buttonSave->setIcon(QIcon(":/small_save_icon.png")); // Маленькая иконка
-    buttonSave->setToolTip("Сохранить"); // Подсказка
-    connect(buttonSave, &QPushButton::clicked, this, &MainWindow::onSaveClicked);
+    // Кнопки без иконок (как на изображении)
+    buttonReset = new QPushButton("Сброс", centralWidget);
+    buttonSave = new QPushButton("Сохранить", centralWidget);
     
     // Регулярные выражения для валидаторов
     QRegExp rxRus("[A-ZА-ЯЁ][a-zа-яё]+"); // Первая заглавная русская буква
@@ -57,7 +47,11 @@ void MainWindow::setupUI() {
     editRName->setValidator(new QRegExpValidator(rxRus));
     editLName->setValidator(new QRegExpValidator(rxEng));
     editWeight->setValidator(new QRegExpValidator(rxFloat));
-    editWingspan->setValidator(new QRegExpValidator(rxRange));
+    editWingspan->setValidator(new QRegExpValidator(rxRxange));
+    
+    // Назначаем уникальные имена объектам для стилей
+    editWeight->setObjectName("lineEditWeight"); // Поле "Вес"
+    editLName->setObjectName("lineEditLatinName"); // Поле "Название (Л)"
     
     // Макеты
     QVBoxLayout *mainLayout = new QVBoxLayout(centralWidget);
