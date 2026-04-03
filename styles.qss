@@ -1,5 +1,28 @@
 /* styles.qss */
 
+/* Базовый стиль для всех полей ввода */
+QLineEdit {
+    border: 1px solid gray;
+    padding-left: 20px; /* Общий отступ слева */
+    height: 30px; /* Высота полей */
+}
+
+/* Специальный стиль для поля "Вес" (меньший отступ) */
+#lineEditWeight {
+    padding-left: 15px; /* Меньший отступ слева */
+}
+
+/* Специальный стиль для поля "Название (Л)" (больший отступ) */
+#lineEditLatinName {
+    padding-left: 25px; /* Больше отступ слева */
+}
+
+/* Другие стили для красоты */
+QLabel {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
 QPushButton {
     background-color: transparent;
     border: none;
@@ -12,9 +35,4 @@ QPushButton:hover {
 
 QPushButton:pressed {
     background-color: rgba(0, 0, 0, 0.2);
-}
-
-QLabel {
-    font-weight: bold;
-    margin-bottom: 5px;
 }
