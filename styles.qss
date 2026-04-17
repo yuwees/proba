@@ -1,38 +1,16 @@
-/* styles.qss */
-
-/* Базовый стиль для всех полей ввода */
-QLineEdit {
-    border: 1px solid gray;
-    padding-left: 20px; /* Общий отступ слева */
-    height: 30px; /* Высота полей */
-}
-
-/* Специальный стиль для поля "Вес" (меньший отступ) */
-#lineEditWeight {
-    padding-left: 15px; /* Меньший отступ слева */
-}
-
-/* Специальный стиль для поля "Название (Л)" (больший отступ) */
-#lineEditLatinName {
-    padding-left: 25px; /* Больше отступ слева */
-}
-
-/* Другие стили для красоты */
-QLabel {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-QPushButton {
-    background-color: transparent;
-    border: none;
-    padding: 5px;
-}
-
-QPushButton:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-QPushButton:pressed {
-    background-color: rgba(0, 0, 0, 0.2);
-}
+C:\Users\yuliy\OneDrive\Documents\NPSCraft_New — копия\MainWindow.cpp:128: ошибка: no declaration matches 'void MainWindow::clearRowHighlight(int)'
+..\..\MainWindow.cpp:128:6: error: no declaration matches 'void MainWindow::clearRowHighlight(int)'
+  128 | void MainWindow::clearRowHighlight(int row) {
+      |      ^~~~~~~~~~
+..\..\MainWindow.cpp:128:6: note: no functions named 'void MainWindow::clearRowHighlight(int)'
+C:\Users\yuliy\OneDrive\Documents\NPSCraft_New — копия\MainWindow.cpp:1: In file included from ..\..\MainWindow.cpp:1:
+In file included from ..\..\MainWindow.cpp:1:
+..\..\MainWindow.h:14:7: note: 'class MainWindow' defined here
+   14 | class MainWindow : public QMainWindow {
+      |       ^~~~~~~~~~
+C:\Users\yuliy\OneDrive\Documents\NPSCraft_New — копия\MainWindow.cpp:145: ошибка: 'clearRowHighlight' was not declared in this scope
+..\..\MainWindow.cpp: In member function 'void MainWindow::onTableRowHovered(int, int)':
+..\..\MainWindow.cpp:145:9: error: 'clearRowHighlight' was not declared in this scope
+  145 |         clearRowHighlight(previousHoveredRow);
+      |         ^~~~~~~~~~~~~~~~~
+:-1: ошибка: [Makefile.Debug:1109: debug/MainWindow.o] Error 1
